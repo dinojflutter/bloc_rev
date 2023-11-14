@@ -17,4 +17,9 @@ class MyAssets {
   /// Assets for assetsImagesLogoGroup 2
   /// assets/images/logo/Group 2.png
   static const String assetsImagesLogoGroup = "assets/images/logo/Group 2.png";
+
+  /// Assets for assetsImagesLogoNetflix
+  /// assets/images/logo/netflix.jpg
+  static const String assetsImagesLogoNetflix =
+      "assets/images/logo/netflix.jpg";
 }

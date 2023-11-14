@@ -15,6 +15,8 @@ class _OnBoardSecondState extends State<OnBoardSecond> {
       children: [
         Image.asset(
           MyAssets.assetsImagesLogo3,
+          height: 300.h,
+          width: 300.w,
         ),
         10.heightBox,
         // "Customize your reading experience and join the conversation by creating an account.."
@@ -28,6 +30,7 @@ class _OnBoardSecondState extends State<OnBoardSecond> {
         "Explore a wide selection of categories, or use the search bar to find specific topics"
             .text
             .align(TextAlign.center)
+            .size(18.sp)
             .make(),
       ],
     );

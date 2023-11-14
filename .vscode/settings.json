@@ -1,3 +1,4 @@
 {
-    "git.enabled": true
+    "git.enabled": true,
+    "cmake.sourceDirectory": "C:/Users/MSI/Desktop/flutter_Project/bloc_revisions/windows/runner"
 }

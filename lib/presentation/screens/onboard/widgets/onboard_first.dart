@@ -12,10 +12,13 @@ class OnBoardfirst extends StatelessWidget {
       children: [
         Image.asset(
           MyAssets.assetsImagesLogo2,
+          height: 300.h,
+          width: 300.w,
         ),
         10.heightBox,
         "Customize your reading experience and join the conversation by creating an account.."
             .text
+            .size(18.sp)
             .align(TextAlign.center)
             .make(),
         // "Customize your reading experience and join the conversation by creating an account.."

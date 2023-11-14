@@ -9,7 +9,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import '../../common_widgets/primary_buttoms.dart';
+import '../../common_widgets/common_widgets_import.dart';
 import 'widgets/onboard_widgets_imports.dart';
 
 part 'onboard.dart';

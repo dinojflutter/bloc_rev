@@ -8,35 +8,67 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i4;
+import 'package:auto_route/auto_route.dart' as _i8;
 import 'package:bloc_revisions/presentation/screens/auth/auth_imports.dart'
     as _i1;
-import 'package:bloc_revisions/presentation/screens/onboard/onboard_imports.dart'
+import 'package:bloc_revisions/presentation/screens/auth/general/general_imports.dart'
     as _i2;
-import 'package:bloc_revisions/presentation/screens/splash/splash_import.dart'
+import 'package:bloc_revisions/presentation/screens/auth/general/home/home_imports.dart'
     as _i3;
+import 'package:bloc_revisions/presentation/screens/auth/login/login_imports.dart'
+    as _i4;
+import 'package:bloc_revisions/presentation/screens/auth/registered/registered_imports.dart'
+    as _i6;
+import 'package:bloc_revisions/presentation/screens/onboard/onboard_imports.dart'
+    as _i5;
+import 'package:bloc_revisions/presentation/screens/splash/splash_import.dart'
+    as _i7;
 
-abstract class $AppRouter extends _i4.RootStackRouter {
+abstract class $AppRouter extends _i8.RootStackRouter {
   $AppRouter({super.navigatorKey});
 
   @override
-  final Map<String, _i4.PageFactory> pagesMap = {
+  final Map<String, _i8.PageFactory> pagesMap = {
     AuthRoute.name: (routeData) {
-      return _i4.AutoRoutePage<dynamic>(
+      return _i8.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i1.Auth(),
       );
     },
-    OnBoardRoute.name: (routeData) {
-      return _i4.AutoRoutePage<dynamic>(
+    GeneralRoute.name: (routeData) {
+      return _i8.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i2.OnBoard(),
+        child: const _i2.General(),
+      );
+    },
+    HomeDetailsRoute.name: (routeData) {
+      return _i8.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i3.HomeDetails(),
+      );
+    },
+    LoginRoute.name: (routeData) {
+      return _i8.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i4.Login(),
+      );
+    },
+    OnBoardRoute.name: (routeData) {
+      return _i8.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i5.OnBoard(),
+      );
+    },
+    RegisteredRoute.name: (routeData) {
+      return _i8.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i6.Registered(),
       );
     },
     SplashScreenRoute.name: (routeData) {
-      return _i4.AutoRoutePage<dynamic>(
+      return _i8.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i3.SplashScreen(),
+        child: const _i7.SplashScreen(),
       );
     },
   };
@@ -44,8 +76,8 @@ abstract class $AppRouter extends _i4.RootStackRouter {
 
 /// generated route for
 /// [_i1.Auth]
-class AuthRoute extends _i4.PageRouteInfo<void> {
-  const AuthRoute({List<_i4.PageRouteInfo>? children})
+class AuthRoute extends _i8.PageRouteInfo<void> {
+  const AuthRoute({List<_i8.PageRouteInfo>? children})
       : super(
           AuthRoute.name,
           initialChildren: children,
@@ -53,13 +85,55 @@ class AuthRoute extends _i4.PageRouteInfo<void> {
 
   static const String name = 'AuthRoute';
 
-  static const _i4.PageInfo<void> page = _i4.PageInfo<void>(name);
+  static const _i8.PageInfo<void> page = _i8.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i2.OnBoard]
-class OnBoardRoute extends _i4.PageRouteInfo<void> {
-  const OnBoardRoute({List<_i4.PageRouteInfo>? children})
+/// [_i2.General]
+class GeneralRoute extends _i8.PageRouteInfo<void> {
+  const GeneralRoute({List<_i8.PageRouteInfo>? children})
+      : super(
+          GeneralRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'GeneralRoute';
+
+  static const _i8.PageInfo<void> page = _i8.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i3.HomeDetails]
+class HomeDetailsRoute extends _i8.PageRouteInfo<void> {
+  const HomeDetailsRoute({List<_i8.PageRouteInfo>? children})
+      : super(
+          HomeDetailsRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'HomeDetailsRoute';
+
+  static const _i8.PageInfo<void> page = _i8.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i4.Login]
+class LoginRoute extends _i8.PageRouteInfo<void> {
+  const LoginRoute({List<_i8.PageRouteInfo>? children})
+      : super(
+          LoginRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'LoginRoute';
+
+  static const _i8.PageInfo<void> page = _i8.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i5.OnBoard]
+class OnBoardRoute extends _i8.PageRouteInfo<void> {
+  const OnBoardRoute({List<_i8.PageRouteInfo>? children})
       : super(
           OnBoardRoute.name,
           initialChildren: children,
@@ -67,13 +141,27 @@ class OnBoardRoute extends _i4.PageRouteInfo<void> {
 
   static const String name = 'OnBoardRoute';
 
-  static const _i4.PageInfo<void> page = _i4.PageInfo<void>(name);
+  static const _i8.PageInfo<void> page = _i8.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i3.SplashScreen]
-class SplashScreenRoute extends _i4.PageRouteInfo<void> {
-  const SplashScreenRoute({List<_i4.PageRouteInfo>? children})
+/// [_i6.Registered]
+class RegisteredRoute extends _i8.PageRouteInfo<void> {
+  const RegisteredRoute({List<_i8.PageRouteInfo>? children})
+      : super(
+          RegisteredRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'RegisteredRoute';
+
+  static const _i8.PageInfo<void> page = _i8.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i7.SplashScreen]
+class SplashScreenRoute extends _i8.PageRouteInfo<void> {
+  const SplashScreenRoute({List<_i8.PageRouteInfo>? children})
       : super(
           SplashScreenRoute.name,
           initialChildren: children,
@@ -81,5 +169,5 @@ class SplashScreenRoute extends _i4.PageRouteInfo<void> {
 
   static const String name = 'SplashScreenRoute';
 
-  static const _i4.PageInfo<void> page = _i4.PageInfo<void>(name);
+  static const _i8.PageInfo<void> page = _i8.PageInfo<void>(name);
 }

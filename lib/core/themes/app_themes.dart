@@ -6,6 +6,8 @@ import '../constants/my_colors.dart';
 class AppThemes {
   AppThemes._();
   static final light = ThemeData(
+      // iconTheme: IconThemeData(color: Colors.white),
+      appBarTheme: const AppBarTheme(backgroundColor: MyColors.appcolor),
       colorScheme: ColorScheme.fromSeed(seedColor: MyColors.appcolor),
       useMaterial3: true,
       fontFamily: GoogleFonts.poppins().fontFamily);

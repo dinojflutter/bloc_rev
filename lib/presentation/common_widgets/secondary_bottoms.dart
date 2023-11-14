@@ -1,10 +1,10 @@
 part of 'common_widgets_import.dart';
 
-class Primarybottom extends StatelessWidget {
+class Secondarybottom extends StatelessWidget {
   final String text;
   final VoidCallback onpressed;
 
-  const Primarybottom({
+  const Secondarybottom({
     super.key,
     required this.text,
     required this.onpressed,
@@ -13,17 +13,17 @@ class Primarybottom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      splashColor: Colors.white,
       onTap: onpressed,
       child: Container(
           decoration: BoxDecoration(
-            color: MyColors.appcolor,
+            border: Border.all(color: Colors.white),
+            color: Colors.transparent,
             borderRadius: BorderRadius.circular(18.r),
           ),
           height: 50.h,
           width: MediaQuery.sizeOf(context).width,
           child:
-              text.text.size(18.sp).bold.color(Colors.white).make().centered()),
+              text.text.size(20.sp).bold.color(Colors.white).make().centered()),
     );
   }
 }
