@@ -28,7 +28,7 @@ class _ProfileState extends State<Profile> {
       body: ListView(
         children: [
           Container(
-            height: 500.h,
+            height: 450.h,
             width: MediaQuery.sizeOf(context).width,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.only(
@@ -72,14 +72,14 @@ class _ProfileState extends State<Profile> {
                           "Posts".text.color(Colors.white).xl.make(),
                         ],
                       ),
-                      Spacer(),
+                      const Spacer(),
                       Column(
                         children: [
                           "6".text.color(Colors.white).xl2.make(),
                           "Following".text.color(Colors.white).xl.make(),
                         ],
                       ),
-                      Spacer(),
+                      const Spacer(),
                       Column(
                         children: [
                           "6".text.color(Colors.white).xl2.make(),
@@ -99,20 +99,36 @@ class _ProfileState extends State<Profile> {
           ),
           15.h.heightBox,
           GridView.builder(
+              physics: const NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
               itemCount: 5,
-              gridDelegate:
-                  SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2),
               itemBuilder: (context, index) {
-                return Card(
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: Column(
                     children: [
-                      Container(
-                        color: Colors.red,
+                      Image.asset(MyAssets.assetsImagesLogoNetflix)
+                          .cornerRadius(12),
+                      5.h.heightBox,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          "One Piece Episode 1081 Release Date and Time"
+                              .text
+                              .make()
+                              .expand(),
+                          IconButton(
+                              onPressed: () {},
+                              icon: const Icon(FeatherIcons.moreVertical))
+                        ],
                       )
                     ],
                   ),
                 );
-              })
+              }),
         ],
       ),
     );

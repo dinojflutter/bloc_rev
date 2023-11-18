@@ -35,7 +35,7 @@ class _HomeState extends State<Home> {
                 },
                 shrinkWrap: true,
                 itemCount: 4,
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (context, index) {
                   return Row(
                     children: [

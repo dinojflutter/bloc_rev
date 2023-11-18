@@ -116,7 +116,7 @@ class _RegisteredState extends State<Registered> {
                                     ..onTap = () => AutoRouter.of(context)
                                         .push(const LoginRoute()),
                                   text: " Login",
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontSize: 15,
                                       fontWeight: FontWeight.bold))
                             ])

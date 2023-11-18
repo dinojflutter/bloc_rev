@@ -39,10 +39,23 @@ class _OnBoardState extends State<OnBoard> {
                   ],
                 ).expand(),
                 Primarybottom(
+                  // onpressed: () {
+                  //   AutoRouter.of(context).push(const AuthRoute());
+                  // },
                   onpressed: () {
-                    AutoRouter.of(context).push(const AuthRoute());
+                    ApiClient().getRequest(path: ApiEndPoints.tags);
                   },
                   text: "Get started",
+                ),
+                10.heightBox,
+                Primarybottom(
+                  // onpressed: () {
+                  //   AutoRouter.of(context).push(const AuthRoute());
+                  // },
+                  onpressed: () {
+                    ApiClient().PostRequest(path: ApiEndPoints.addtags);
+                  },
+                  text: "post request",
                 ),
                 30.h.heightBox,
                 Row(

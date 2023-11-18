@@ -30,7 +30,7 @@ class _TagsState extends State<Tags> {
       body: ListView.separated(
           itemCount: 10,
           separatorBuilder: (context, index) {
-            return SizedBox(
+            return const SizedBox(
               height: 10,
             );
           },
