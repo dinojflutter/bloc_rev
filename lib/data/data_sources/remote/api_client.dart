@@ -47,7 +47,7 @@ class ApiClient {
     Map body = {"title": "hussy", "slug": "hussy"};
 
     final options = Options(headers: {
-      "Authorization": "Bearer 324|WOX5Z2ael4oFReNBOR2TtHwNwUUoSXit9kCH2fkm "
+      "Authorization": "Bearer 157|vV98KuNeIr4B4wpu5PXbqL9Ktfz6jjeUW4KK5GxV"
     });
 
     try {

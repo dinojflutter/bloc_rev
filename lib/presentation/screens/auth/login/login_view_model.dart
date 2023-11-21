@@ -12,7 +12,9 @@ class LoginViewModel {
     var loginData = await repository.authRepo
         .userlogin(emailcontroller.text, passwordcontroller.text);
     if (loginData.accessToken != null) {
-      AutoRouter.of(context).push(GeneralRoute());
+      AutoRouter.of(context).push(const GeneralRoute());
+
+      print(loginData);
     }
   }
 }
