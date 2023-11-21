@@ -4,7 +4,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 import 'api_constant.dart';
-import 'api_endpoints_urls.dart';
 import 'api_exception.dart';
 
 class ApiClient {
@@ -30,7 +29,7 @@ class ApiClient {
       // debugPrint(response.data);
     } on DioException catch (e) {
       if (e.response != null) {
-        debugPrint(e.response!.data);
+        debugPrint(e.response!.data.toString());
         debugPrint(e.response!.headers.toString());
         debugPrint(e.response!.requestOptions.toString());
         throw ApiException(message: e.response!.statusMessage);
@@ -43,7 +42,8 @@ class ApiClient {
   }
 
   ////post Request
-  Future<Response> PostRequest({required String path}) async {
+  Future<Response> postRequest(
+      {required String path, required dynamic body}) async {
     Map body = {"title": "hussy", "slug": "hussy"};
 
     final options = Options(headers: {
@@ -63,7 +63,7 @@ class ApiClient {
       // debugPrint(response.data);
     } on DioException catch (e) {
       if (e.response != null) {
-        debugPrint(e.response!.data);
+        debugPrint(e.response!.data.toString());
         debugPrint(e.response!.headers.toString());
         debugPrint(e.response!.requestOptions.toString());
         throw ApiException(message: e.response!.statusMessage);

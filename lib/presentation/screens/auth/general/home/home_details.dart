@@ -51,7 +51,7 @@ class _HomeDetailsState extends State<HomeDetails> {
                     "0".text.make(),
                     IconButton(
                       onPressed: () {},
-                      icon: Icon(
+                      icon: const Icon(
                         FeatherIcons.thumbsDown,
                         color: Colors.red,
                       ),

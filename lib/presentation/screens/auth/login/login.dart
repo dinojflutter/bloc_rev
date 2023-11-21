@@ -9,6 +9,14 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  late LoginViewModel loginViewModel;
+
+  @override
+  void initState() {
+    loginViewModel = LoginViewModel(repository: context.read<Repository>());
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,8 +58,9 @@ class _LoginState extends State<Login> {
                             .centered(),
                         20.h.heightBox,
                         "Email".text.size(15).color(Colors.black).make(),
-                        const VxTextField(
+                        VxTextField(
                           hint: "Enter Email",
+                          controller: loginViewModel.emailcontroller,
                           borderRadius: 10,
                           fillColor: Colors.transparent,
                           borderColor: MyColors.appcolor,
@@ -60,10 +69,11 @@ class _LoginState extends State<Login> {
                         ),
                         20.h.heightBox,
                         "Password".text.size(15).color(Colors.black).make(),
-                        const VxTextField(
+                        VxTextField(
                           isPassword: true,
                           obscureText: true,
                           hint: "Enter Password",
+                          controller: loginViewModel.passwordcontroller,
                           borderRadius: 10,
                           fillColor: Colors.transparent,
                           borderColor: MyColors.appcolor,
@@ -90,8 +100,9 @@ class _LoginState extends State<Login> {
                         10.h.heightBox,
                         Primarybottom(
                             text: "Login",
-                            onpressed: () => AutoRouter.of(context)
-                                .push(const GeneralRoute())),
+                            onpressed: () {
+                              loginViewModel.login(context);
+                            }),
                         15.h.heightBox,
                         "Don`t have an account ?"
                             .richText

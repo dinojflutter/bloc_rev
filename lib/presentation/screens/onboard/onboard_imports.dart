@@ -11,6 +11,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:velocity_x/velocity_x.dart';
 
+import '../../../data/repositories/tags_repo.dart';
 import '../../common_widgets/common_widgets_import.dart';
 import 'widgets/onboard_widgets_imports.dart';
 

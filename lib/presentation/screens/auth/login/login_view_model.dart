@@ -1,3 +1,18 @@
 part of 'login_imports.dart';
 
-class LoginViewModel{}
+class LoginViewModel {
+  final Repository repository;
+
+  LoginViewModel({required this.repository});
+
+  final TextEditingController emailcontroller = TextEditingController();
+  final TextEditingController passwordcontroller = TextEditingController();
+
+  login(context) async {
+    var loginData = await repository.authRepo
+        .userlogin(emailcontroller.text, passwordcontroller.text);
+    if (loginData.accessToken != null) {
+      AutoRouter.of(context).push(GeneralRoute());
+    }
+  }
+}

@@ -8,6 +8,15 @@ class Tags extends StatefulWidget {
 }
 
 class _TagsState extends State<Tags> {
+  late TagsViewModel tagsViewModel;
+
+  @override
+  void initState() {
+    tagsViewModel = TagsViewModel(repository: context.read<Repository>());
+    tagsViewModel.fetchAllTags();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,41 +36,56 @@ class _TagsState extends State<Tags> {
               )),
         ],
       ),
-      body: ListView.separated(
-          itemCount: 10,
-          separatorBuilder: (context, index) {
-            return const SizedBox(
-              height: 10,
+      body: BlocBuilder<VelocityBloc<TagsModel>, VelocityState<TagsModel>>(
+        bloc: tagsViewModel.tagsModelBloc,
+        builder: (context, state) {
+          if (state is VelocityInitialState) {
+            return const Center(
+              child: CircularProgressIndicator(),
             );
-          },
-          itemBuilder: (context, index) {
-            return Card(
-              color: Colors.white,
-              child: ListTile(
-                leading: "${index + 1}".text.bold.make(),
-                title: const Text("Enter the data"),
-                trailing: SizedBox(
-                  width: 100.w,
-                  child: Row(
-                    children: [
-                      IconButton(
-                          onPressed: () {},
-                          icon: const Icon(
-                            FeatherIcons.edit2,
-                            color: Colors.green,
-                          )),
-                      IconButton(
-                          onPressed: () {},
-                          icon: const Icon(
-                            FeatherIcons.trash2,
-                            color: Colors.red,
-                          )),
-                    ],
-                  ),
-                ),
-              ),
-            );
-          }),
+          } else if (state is VelocityUpdateState) {
+            return ListView.separated(
+                itemCount: state.data.tags!.length,
+                separatorBuilder: (context, index) {
+                  return const SizedBox(
+                    height: 10,
+                  );
+                },
+                itemBuilder: (context, index) {
+                  var tagsData = state.data.tags![index];
+
+                  return Card(
+                    color: Colors.white,
+                    child: ListTile(
+                      leading: "${index + 1}".text.bold.make(),
+                      title: tagsData.title!.text.size(16).make(),
+                      // title: Text(tagsData.title.toString()),
+                      trailing: SizedBox(
+                        width: 100.w,
+                        child: Row(
+                          children: [
+                            IconButton(
+                                onPressed: () {},
+                                icon: const Icon(
+                                  FeatherIcons.edit2,
+                                  color: Colors.green,
+                                )),
+                            IconButton(
+                                onPressed: () {},
+                                icon: const Icon(
+                                  FeatherIcons.trash2,
+                                  color: Colors.red,
+                                )),
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                });
+          }
+          return SizedBox();
+        },
+      ),
     );
   }
 }
