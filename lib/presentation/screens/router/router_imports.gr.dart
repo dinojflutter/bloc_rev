@@ -15,6 +15,8 @@ import 'package:bloc_revisions/presentation/screens/auth/general/general_imports
     as _i2;
 import 'package:bloc_revisions/presentation/screens/auth/general/home/home_imports.dart'
     as _i3;
+import 'package:bloc_revisions/presentation/screens/auth/general/home/home_model.dart'
+    as _i10;
 import 'package:bloc_revisions/presentation/screens/auth/login/login_imports.dart'
     as _i4;
 import 'package:bloc_revisions/presentation/screens/auth/registered/registered_imports.dart'
@@ -23,6 +25,7 @@ import 'package:bloc_revisions/presentation/screens/onboard/onboard_imports.dart
     as _i5;
 import 'package:bloc_revisions/presentation/screens/splash/splash_import.dart'
     as _i7;
+import 'package:flutter/material.dart' as _i9;
 
 abstract class $AppRouter extends _i8.RootStackRouter {
   $AppRouter({super.navigatorKey});
@@ -42,9 +45,14 @@ abstract class $AppRouter extends _i8.RootStackRouter {
       );
     },
     HomeDetailsRoute.name: (routeData) {
+      final args = routeData.argsAs<HomeDetailsRouteArgs>();
       return _i8.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i3.HomeDetails(),
+        child: _i3.HomeDetails(
+          key: args.key,
+          post: args.post,
+          imagepath: args.imagepath,
+        ),
       );
     },
     LoginRoute.name: (routeData) {
@@ -104,16 +112,45 @@ class GeneralRoute extends _i8.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i3.HomeDetails]
-class HomeDetailsRoute extends _i8.PageRouteInfo<void> {
-  const HomeDetailsRoute({List<_i8.PageRouteInfo>? children})
-      : super(
+class HomeDetailsRoute extends _i8.PageRouteInfo<HomeDetailsRouteArgs> {
+  HomeDetailsRoute({
+    _i9.Key? key,
+    required _i10.Post post,
+    required String imagepath,
+    List<_i8.PageRouteInfo>? children,
+  }) : super(
           HomeDetailsRoute.name,
+          args: HomeDetailsRouteArgs(
+            key: key,
+            post: post,
+            imagepath: imagepath,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'HomeDetailsRoute';
 
-  static const _i8.PageInfo<void> page = _i8.PageInfo<void>(name);
+  static const _i8.PageInfo<HomeDetailsRouteArgs> page =
+      _i8.PageInfo<HomeDetailsRouteArgs>(name);
+}
+
+class HomeDetailsRouteArgs {
+  const HomeDetailsRouteArgs({
+    this.key,
+    required this.post,
+    required this.imagepath,
+  });
+
+  final _i9.Key? key;
+
+  final _i10.Post post;
+
+  final String imagepath;
+
+  @override
+  String toString() {
+    return 'HomeDetailsRouteArgs{key: $key, post: $post, imagepath: $imagepath}';
+  }
 }
 
 /// generated route for

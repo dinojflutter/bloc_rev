@@ -30,16 +30,33 @@ class _HomeState extends State<Home> {
               return SingleChildScrollView(
                 child: Column(
                   children: [
-                    Image.asset(MyAssets.assetsImagesLogoNetflix)
-                        .cornerRadius(18),
+                    VxSwiper.builder(
+                        autoPlay: true,
+                        enlargeCenterPage: true,
+                        itemCount: state.data.popularPosts!.length,
+                        itemBuilder: (context, index) {
+                          var latestpost = state.data.popularPosts![index];
+                          var imagepath = latestpost.featuredimage
+                              .toString()
+                              .prepend("https://techblog.codersangam.com/")
+                              .replaceAll("public", "storage");
+                          return CachedNetworkImage(
+                            imageUrl: imagepath,
+                            fit: BoxFit.cover,
+                          );
+                        }).cornerRadius(18),
                     15.h.heightBox,
                     Row(
                       children: [
-                        "Latest Posts".text.size(16).make(),
+                        "Latest Posts"
+                            .text
+                            .color(MyColors.appcolor)
+                            .size(16)
+                            .make(),
                         const Spacer(),
-                        "See More".text.size(16).make()
+                        "See More".text.color(MyColors.appcolor).size(16).make()
                       ],
-                    ),
+                    ).pSymmetric(h: 15.w),
                     10.h.heightBox,
                     ListView.separated(
                       separatorBuilder: (context, index) {
@@ -52,39 +69,49 @@ class _HomeState extends State<Home> {
                       physics: const NeverScrollableScrollPhysics(),
                       itemBuilder: (context, index) {
                         var latestpost = state.data.allPosts![index];
+                        var imagepath = latestpost.featuredimage
+                            .toString()
+                            .prepend("https://techblog.codersangam.com/")
+                            .replaceAll("public", "storage");
 
-                        return Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            GestureDetector(
-                              onTap: () => AutoRouter.of(context)
-                                  .push(const HomeDetailsRoute()),
-                              child: Image.asset(
-                                MyAssets.assetsImagesLogoNetflix,
-                                // height: 250,
-                                // width: 250,
-                                height: 120,
-                                width: 200,
-                                fit: BoxFit.cover,
-                              ).cornerRadius(18),
-                            ),
-                            2.w.widthBox,
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 10),
-                              child: Column(
+                        return FadedScaleAnimation(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              GestureDetector(
+                                onTap: () => AutoRouter.of(context).push(
+                                    HomeDetailsRoute(
+                                        post: latestpost,
+                                        imagepath: imagepath)),
+                                child: Hero(
+                                  tag: latestpost.id.toString(),
+                                  child: CachedNetworkImage(
+                                    imageUrl: imagepath,
+                                    // height: 250,
+                                    // width: 250,
+                                    height: 120,
+                                    width: 200,
+                                    fit: BoxFit.cover,
+                                  ).cornerRadius(18),
+                                ),
+                              ),
+                              10.w.widthBox,
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   latestpost.title!.text
-                                      .maxLines(2)
-                                      .size(15)
+                                      .maxLines(3)
+                                      .size(14)
                                       .make(),
                                   5.h.heightBox,
                                   Row(
                                     children: [
                                       const Icon(FeatherIcons.clock),
-                                      10.w.widthBox,
-                                      latestpost.createdAt
+                                      5.w.widthBox,
+                                      latestpost.createdAt!
+                                          .timeAgo()
                                           .toString()
                                           .text
                                           .make(),
@@ -93,18 +120,18 @@ class _HomeState extends State<Home> {
                                   5.h.heightBox,
                                   Row(
                                     children: [
-                                      "68 views".text.make(),
+                                      "${latestpost.views} views ".text.make(),
                                       5.w.widthBox,
                                       const Icon(FeatherIcons.bookmark),
                                     ],
                                   )
                                 ],
-                              ).expand(),
-                            )
-                          ],
+                              ).expand()
+                            ],
+                          ),
                         );
                       },
-                    )
+                    ).pSymmetric(h: 10.w)
                   ],
                 ),
               );
