@@ -7,4 +7,5 @@ class ApiEndPoints {
   static const String addtags = "add-tags";
 
   static const String login = "login";
+  static const String logout = "logout";
 }

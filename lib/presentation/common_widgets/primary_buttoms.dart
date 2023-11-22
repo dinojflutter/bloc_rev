@@ -3,11 +3,13 @@ part of 'common_widgets_import.dart';
 class Primarybottom extends StatelessWidget {
   final String text;
   final VoidCallback onpressed;
+  final bool? isloading;
 
   const Primarybottom({
     super.key,
     required this.text,
     required this.onpressed,
+    this.isloading,
   });
 
   @override
@@ -22,8 +24,17 @@ class Primarybottom extends StatelessWidget {
           ),
           height: 50.h,
           width: MediaQuery.sizeOf(context).width,
-          child:
-              text.text.size(18.sp).bold.color(Colors.white).make().centered()),
+          child: isloading == true
+              ? const Center(
+                  child: CircularProgressIndicator(
+                  color: Colors.white,
+                ))
+              : text.text
+                  .size(18.sp)
+                  .bold
+                  .color(Colors.white)
+                  .make()
+                  .centered()),
     );
   }
 }

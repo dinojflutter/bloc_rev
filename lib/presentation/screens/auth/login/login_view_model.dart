@@ -8,13 +8,17 @@ class LoginViewModel {
   final TextEditingController emailcontroller = TextEditingController();
   final TextEditingController passwordcontroller = TextEditingController();
 
-  login(context) async {
-    var loginData = await repository.authRepo
-        .userlogin(emailcontroller.text, passwordcontroller.text);
-    if (loginData.accessToken != null) {
-      AutoRouter.of(context).push(const GeneralRoute());
+  final formkey = GlobalKey<FormState>();
+  final VelocityBloc<bool> isloadingbloc = VelocityBloc<bool>(false);
 
-      print(loginData);
+  login(context) async {
+    isloadingbloc.onUpdateData(true);
+    var loginData = await repository.authRepo
+        .userlogin(emailcontroller.text, passwordcontroller.text, context);
+    if (loginData.accessToken != null) {
+      Utiles.saveToken(loginData.accessToken.toString());
+      AutoRouter.of(context).push(const GeneralRoute());
     }
+    isloadingbloc.onUpdateData(false);
   }
 }

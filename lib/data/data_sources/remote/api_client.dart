@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:bloc_revisions/utils/utils.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
@@ -42,18 +43,16 @@ class ApiClient {
   }
 
   ////post Request
-  Future<Response> postRequest(
-      {required String path, required dynamic body}) async {
-    Map body = {"title": "hussy", "slug": "hussy"};
-
-    final options = Options(headers: {
-      "Authorization": "Bearer 157|vV98KuNeIr4B4wpu5PXbqL9Ktfz6jjeUW4KK5GxV"
-    });
+  Future<Response> postRequest({required String path, dynamic body}) async {
+    var token = await Utiles.getToken();
+    final options = Options(headers: {"Authorization": "Bearer $token"});
 
     try {
       // 404
       debugPrint("############## Api Request #############");
       debugPrint("Request Url:${baseOptions.baseUrl + path} ");
+      debugPrint("body:$body");
+
       var response = await dio.post(path, data: body, options: options);
       debugPrint("############## Api Response #############");
       debugPrint("Status Code :  ${response.statusCode.toString()}");

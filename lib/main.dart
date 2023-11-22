@@ -1,5 +1,6 @@
 import 'package:bloc_revisions/core/themes/app_themes.dart';
 import 'package:bloc_revisions/data/repositories/auth_repo.dart';
+import 'package:bloc_revisions/data/repositories/post_repo.dart';
 import 'package:bloc_revisions/data/repositories/tags_repo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -11,6 +12,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 void main() {
   runApp(RepositoryProvider(
     create: (context) => Repository(
+      postRepo: PostRepo(),
       authRepo: AuthRepo(),
       tagsRepo: TagsRepo(),
     ),
