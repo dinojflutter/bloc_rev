@@ -25,7 +25,13 @@ class _HomeState extends State<Home> {
           bloc: homeViewModel.postbloc,
           builder: (context, state) {
             if (state is VelocityInitialState) {
-              const CircularProgressIndicator.adaptive();
+              return const Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  CircularProgressIndicator.adaptive(),
+                ],
+              );
             } else if (state is VelocityUpdateState) {
               return SingleChildScrollView(
                 child: Column(
