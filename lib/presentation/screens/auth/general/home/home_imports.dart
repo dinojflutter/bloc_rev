@@ -1,6 +1,5 @@
 import 'package:animation_wrappers/animations/faded_scale_animation.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:bloc_revisions/core/constants/my_assets.dart';
 import 'package:bloc_revisions/core/constants/my_colors.dart';
 import 'package:bloc_revisions/data/repositories/repository.dart';
 import 'package:bloc_revisions/presentation/screens/auth/general/home/home_model.dart';

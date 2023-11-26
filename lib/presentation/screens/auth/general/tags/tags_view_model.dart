@@ -14,4 +14,10 @@ class TagsViewModel {
       tagsModelBloc.onUpdateData(tagsData);
     }
   }
+
+  gotoTags(context) async {
+    var updatedData =
+        await AutoRouter.of(context).push<TagsModel>(const AddTagsRoute());
+    tagsModelBloc.onUpdateData(updatedData!);
+  }
 }

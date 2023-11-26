@@ -16,12 +16,22 @@ class ApiClient {
     dio = Dio(baseOptions);
   }
 
-  Future<Response> getRequest({required String path}) async {
+  Options options = Options();
+
+  Future<Response> getRequest(
+      {required String path, bool isTokenRequired = false}) async {
+    if (isTokenRequired == true) {
+      var token = await Utiles.getToken();
+
+      options.headers = baseOptions.headers
+        ..addAll({"Authorization": "Bearer $token"});
+    }
+
     try {
       // 404
       debugPrint("############## Api Request #############");
       debugPrint("Request Url:${baseOptions.baseUrl + path} ");
-      var response = await dio.get(path);
+      var response = await dio.get(path, options: options);
       debugPrint("############## Api Response #############");
       debugPrint("Status Code :  ${response.statusCode.toString()}");
       log("Response data :  ${response.data}");
@@ -43,9 +53,14 @@ class ApiClient {
   }
 
   ////post Request
-  Future<Response> postRequest({required String path, dynamic body}) async {
-    var token = await Utiles.getToken();
-    final options = Options(headers: {"Authorization": "Bearer $token"});
+  Future<Response> postRequest(
+      {required String path, dynamic body, isTokenRequired = false}) async {
+    if (isTokenRequired == true) {
+      var token = await Utiles.getToken();
+
+      options.headers = baseOptions.headers
+        ..addAll({"Authorization": "Bearer $token"});
+    }
 
     try {
       // 404

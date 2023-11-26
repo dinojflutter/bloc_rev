@@ -1,5 +1,6 @@
 part of 'tags_imports.dart';
 
+@RoutePage()
 class Tags extends StatefulWidget {
   const Tags({super.key});
 
@@ -28,7 +29,7 @@ class _TagsState extends State<Tags> {
           Padding(
               padding: const EdgeInsets.only(right: 12),
               child: IconButton(
-                onPressed: () {},
+                onPressed: () => tagsViewModel.gotoTags(context),
                 icon: const Icon(
                   FeatherIcons.plus,
                   color: Colors.white,

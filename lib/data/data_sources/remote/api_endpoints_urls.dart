@@ -8,4 +8,5 @@ class ApiEndPoints {
 
   static const String login = "login";
   static const String logout = "logout";
+  static const String userposts = "user-posts";
 }
