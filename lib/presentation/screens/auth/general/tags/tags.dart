@@ -27,14 +27,15 @@ class _TagsState extends State<Tags> {
         title: "Tags".text.color(Colors.white).make().centered(),
         actions: [
           Padding(
-              padding: const EdgeInsets.only(right: 12),
-              child: IconButton(
-                onPressed: () => tagsViewModel.gotoTags(context),
-                icon: const Icon(
-                  FeatherIcons.plus,
-                  color: Colors.white,
-                ),
-              )),
+            padding: const EdgeInsets.only(right: 12),
+            child: IconButton(
+              onPressed: () => tagsViewModel.gotoTags(context),
+              icon: const Icon(
+                FeatherIcons.plus,
+                color: Colors.white,
+              ),
+            ),
+          ),
         ],
       ),
       body: BlocBuilder<VelocityBloc<TagsModel>, VelocityState<TagsModel>>(
@@ -72,7 +73,8 @@ class _TagsState extends State<Tags> {
                                   color: Colors.green,
                                 )),
                             IconButton(
-                                onPressed: () {},
+                                onPressed: () => tagsViewModel.deleteTags(
+                                    tagsData.id.toString(), context, index),
                                 icon: const Icon(
                                   FeatherIcons.trash2,
                                   color: Colors.red,
@@ -84,7 +86,7 @@ class _TagsState extends State<Tags> {
                   );
                 });
           }
-          return SizedBox();
+          return const SizedBox();
         },
       ),
     );

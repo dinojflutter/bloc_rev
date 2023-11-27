@@ -34,7 +34,7 @@ class ApiClient {
       var response = await dio.get(path, options: options);
       debugPrint("############## Api Response #############");
       debugPrint("Status Code :  ${response.statusCode.toString()}");
-      log("Response data :  ${response.data}");
+      // log("Response data :  ${response.data}");
       return response;
 
       // debugPrint(response.data);
@@ -71,7 +71,7 @@ class ApiClient {
       var response = await dio.post(path, data: body, options: options);
       debugPrint("############## Api Response #############");
       debugPrint("Status Code :  ${response.statusCode.toString()}");
-      log("Response data :  ${response.data}");
+      // log("Response data :  ${response.data}");
       return response;
 
       // debugPrint(response.data);

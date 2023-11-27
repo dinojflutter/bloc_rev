@@ -56,9 +56,15 @@ class _AddTagsState extends State<AddTags> {
               const Spacer(),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: Primarybottom(
-                    text: "Add Tags",
-                    onpressed: () => addTagsViewModel.addnewTags(context)),
+                child: BlocBuilder<VelocityBloc<bool>, VelocityState<bool>>(
+                  bloc: addTagsViewModel.isloadingbloc,
+                  builder: (context, state) {
+                    return Primarybottom(
+                        isloading: state.data,
+                        text: "Add Tags",
+                        onpressed: () => addTagsViewModel.addnewTags(context));
+                  },
+                ),
               )
             ],
           ),

@@ -15,7 +15,7 @@ class TagsRepo extends ApiClient {
       final response = await getRequest(path: ApiEndPoints.tags);
       if (response.statusCode == 200) {
         final responseData = tagsModelFromJson(jsonEncode(response.data));
-        Vx.log(response.data);
+        // Vx.log(response.data);
         return responseData;
       } else {
         TagsModel();
@@ -32,6 +32,24 @@ class TagsRepo extends ApiClient {
     try {
       final response = await postRequest(
           path: ApiEndPoints.addtags, body: body, isTokenRequired: true);
+      if (response.statusCode == 200) {
+        final responseData = messageModelFromJson(jsonEncode(response.data));
+        // Vx.log(response.data);
+        return responseData;
+      } else {
+        MessageModel();
+      }
+    } on Exception catch (e) {
+      Vx.log(e);
+      MessageModel();
+    }
+    return MessageModel();
+  }
+
+  Future<MessageModel> deleteTags(String id) async {
+    try {
+      final response = await postRequest(
+          path: "${ApiEndPoints.deletetags}/$id", isTokenRequired: true);
       if (response.statusCode == 200) {
         final responseData = messageModelFromJson(jsonEncode(response.data));
         Vx.log(response.data);

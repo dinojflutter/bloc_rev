@@ -15,7 +15,7 @@ class PostRepo extends ApiClient {
       final response = await getRequest(path: ApiEndPoints.posts);
       if (response.statusCode == 200) {
         final responseData = homeModelFromJson(jsonEncode(response.data));
-        Vx.log(response.data);
+        // Vx.log(response.data);
         return responseData;
       } else {
         HomeModel();
@@ -33,7 +33,7 @@ class PostRepo extends ApiClient {
           await getRequest(path: ApiEndPoints.userposts, isTokenRequired: true);
       if (response.statusCode == 200) {
         final responseData = profileModelFromJson(jsonEncode(response.data));
-        Vx.log(response.data);
+        // Vx.log(response.data);
         return responseData;
       } else {
         ProfileModel();
