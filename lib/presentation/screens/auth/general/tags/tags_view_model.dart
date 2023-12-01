@@ -25,9 +25,9 @@ class TagsViewModel {
     }
   }
 
-  gotoupdateTags(context) async {
+  gotoupdateTags(context, Tag tag) async {
     var addedData =
-        await AutoRouter.of(context).push<TagsModel>(const AddTagsRoute());
+        await AutoRouter.of(context).push<TagsModel>(UpdateTagsRoute(tag: tag));
     // tagsModelBloc.onUpdateData(updatedData!);
 
     if (addedData != null) {
