@@ -18,7 +18,21 @@ class TagsViewModel {
   gotoTags(context) async {
     var updatedData =
         await AutoRouter.of(context).push<TagsModel>(const AddTagsRoute());
-    tagsModelBloc.onUpdateData(updatedData!);
+    // tagsModelBloc.onUpdateData(updatedData!);
+
+    if (updatedData != null) {
+      tagsModelBloc.onUpdateData(updatedData);
+    }
+  }
+
+  gotoupdateTags(context) async {
+    var addedData =
+        await AutoRouter.of(context).push<TagsModel>(const AddTagsRoute());
+    // tagsModelBloc.onUpdateData(updatedData!);
+
+    if (addedData != null) {
+      tagsModelBloc.onUpdateData(addedData);
+    }
   }
 
   deleteTags(String id, context, int index) async {

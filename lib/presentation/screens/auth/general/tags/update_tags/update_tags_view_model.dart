@@ -1,16 +1,16 @@
-part of 'add-tags_imports.dart';
+part of 'update_tags_imports.dart';
 
-class AddTagsViewModel {
+class UpdateTagsViewModel {
   final Repository repository;
 
-  AddTagsViewModel({required this.repository});
+  UpdateTagsViewModel({required this.repository});
 
   final TextEditingController textcontroller = TextEditingController();
   final VelocityBloc<bool> isloadingbloc = VelocityBloc<bool>(false);
 
-  addnewTags(context) async {
+  updateTags(context, String id) async {
     isloadingbloc.onUpdateData(true);
-    var data = await repository.tagsRepo.addnewTags(textcontroller.text,
+    var data = await repository.tagsRepo.updateTags(textcontroller.text, id,
         textcontroller.text.toLowerCase().replaceAll(" ", "-"));
     if (data.status == 1) {
       VxToast.show(context, msg: data.message.toString());

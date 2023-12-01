@@ -12,5 +12,5 @@ import 'package:velocity_x/velocity_x.dart';
 import '../../../../../../core/constants/my_colors.dart';
 import '../../../../router/router_imports.gr.dart';
 
-part 'add-tags.dart';
-part 'add-tags_view_model.dart';
+part 'add_tags.dart';
+part 'add_tags_view_model.dart';

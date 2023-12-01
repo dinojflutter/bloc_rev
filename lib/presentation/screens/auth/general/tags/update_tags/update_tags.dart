@@ -1,19 +1,22 @@
-part of 'add-tags_imports.dart';
+part of 'update_tags_imports.dart';
 
 @RoutePage<TagsModel>()
-class AddTags extends StatefulWidget {
-  const AddTags({super.key});
+class UpdateTags extends StatefulWidget {
+  const UpdateTags({super.key, required this.tag});
+
+  final Tag tag;
 
   @override
-  State<AddTags> createState() => _AddTagsState();
+  State<UpdateTags> createState() => _UpdateTagsState();
 }
 
-class _AddTagsState extends State<AddTags> {
-  late AddTagsViewModel addTagsViewModel;
+class _UpdateTagsState extends State<UpdateTags> {
+  late UpdateTagsViewModel updateTagsViewModel;
 
   @override
   void initState() {
-    addTagsViewModel = AddTagsViewModel(repository: context.read<Repository>());
+    updateTagsViewModel =
+        UpdateTagsViewModel(repository: context.read<Repository>());
     super.initState();
   }
 
@@ -38,7 +41,7 @@ class _AddTagsState extends State<AddTags> {
             children: [
               VxTextField(
                 hint: "Title",
-                controller: addTagsViewModel.textcontroller,
+                controller: updateTagsViewModel.textcontroller,
                 borderRadius: 10,
                 fillColor: Colors.transparent,
                 borderColor: MyColors.appcolor,
@@ -47,7 +50,7 @@ class _AddTagsState extends State<AddTags> {
               20.h.heightBox,
               VxTextField(
                 hint: "Slug",
-                controller: addTagsViewModel.textcontroller,
+                controller: updateTagsViewModel.textcontroller,
                 borderRadius: 10,
                 fillColor: Colors.transparent,
                 borderColor: MyColors.appcolor,
@@ -57,12 +60,13 @@ class _AddTagsState extends State<AddTags> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: BlocBuilder<VelocityBloc<bool>, VelocityState<bool>>(
-                  bloc: addTagsViewModel.isloadingbloc,
+                  bloc: updateTagsViewModel.isloadingbloc,
                   builder: (context, state) {
                     return Primarybottom(
                         isloading: state.data,
-                        text: "Add Tags",
-                        onpressed: () => addTagsViewModel.addnewTags(context));
+                        text: "Update Tags",
+                        onpressed: () =>
+                            updateTagsViewModel.updateTags(context, "1"));
                   },
                 ),
               )
