@@ -68,7 +68,7 @@ class TagsRepo extends ApiClient {
     Map body = {"id": id, "title": title, "slug": slug};
     try {
       final response = await postRequest(
-          path: ApiEndPoints.addtags, body: body, isTokenRequired: true);
+          path: ApiEndPoints.updatetags, body: body, isTokenRequired: true);
       if (response.statusCode == 200) {
         final responseData = messageModelFromJson(jsonEncode(response.data));
         // Vx.log(response.data);

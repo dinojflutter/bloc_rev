@@ -1,6 +1,6 @@
 part of 'tags_imports.dart';
 
-@RoutePage()
+@RoutePage<Tag>()
 class Tags extends StatefulWidget {
   const Tags({super.key});
 
@@ -61,6 +61,7 @@ class _TagsState extends State<Tags> {
                     child: ListTile(
                       leading: "${index + 1}".text.bold.make(),
                       title: tagsData.title!.text.size(16).make(),
+
                       // title: Text(tagsData.title.toString()),
                       trailing: SizedBox(
                         width: 100.w,
@@ -83,6 +84,9 @@ class _TagsState extends State<Tags> {
                           ],
                         ),
                       ),
+                      onTap: () {
+                        AutoRouter.of(context).pop<Tag>(tagsData);
+                      },
                     ),
                   );
                 });

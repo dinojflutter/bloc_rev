@@ -24,19 +24,20 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: MyColors.appcolor,
-        body: FadedScaleAnimation(
-          child: Center(
-            child: Image.asset(
-              MyAssets.assetsImagesLogoGroup,
-              height: 50,
-              width: 150,
-            ),
-            // child: Image(
-            //   image: AssetImage(
-            //     "assets/images/logo/Group 2.png",
-            //   ),
+      backgroundColor: MyColors.appcolor,
+      body: FadedScaleAnimation(
+        child: Center(
+          child: Image.asset(
+            MyAssets.assetsImagesLogoGroup,
+            height: 50,
+            width: 150,
           ),
-        ));
+          // child: Image(
+          //   image: AssetImage(
+          //     "assets/images/logo/Group 2.png",
+          //   ),
+        ),
+      ),
+    );
   }
 }

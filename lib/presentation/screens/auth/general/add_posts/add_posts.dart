@@ -8,7 +8,23 @@ class AddPosts extends StatefulWidget {
 }
 
 class _AddPostsState extends State<AddPosts> {
-  // final QuillController _controller = QuillController.basic();
+  late AddPostsViewModel addPostsViewModel;
+
+  @override
+  void initState() {
+    addPostsViewModel =
+        AddPostsViewModel(repository: context.read<Repository>());
+
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    addPostsViewModel._controller.dispose();
+    addPostsViewModel.textEditingController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,98 +33,126 @@ class _AddPostsState extends State<AddPosts> {
         automaticallyImplyLeading: false,
         title: "Add Posts".text.color(Colors.white).make(),
         actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              FeatherIcons.check,
-              color: Colors.white,
-            ),
+          BlocBuilder<VelocityBloc<bool>, VelocityState<bool>>(
+            bloc: addPostsViewModel.isloadingbloc,
+            builder: (context, state) {
+              return IconButton(
+                onPressed: () => addPostsViewModel.addpost(context),
+                icon: state.data == true
+                    ? const CircularProgressIndicator(
+                        color: Colors.white,
+                      )
+                    : const Icon(
+                        FeatherIcons.check,
+                        color: Colors.white,
+                      ),
+              );
+            },
           ),
         ],
       ),
       body: ListView(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
         children: [
-          Stack(
-            alignment: Alignment.bottomRight,
-            children: [
-              Image.network(
-                "https://www.ivins.com/wp-content/uploads/2020/09/placeholder-1.png",
-              ),
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  FeatherIcons.camera,
-                  color: MyColors.appcolor,
-                ),
-              ),
-            ],
+          10.h.heightBox,
+          BlocBuilder<VelocityBloc<XFile?>, VelocityState<XFile?>>(
+            bloc: addPostsViewModel.selectedImagebloc,
+            builder: (context, state) {
+              return Stack(
+                alignment: Alignment.bottomRight,
+                children: [
+                  state.data != null
+                      ? Image.file(
+                          File(state.data!.path),
+                          height: 250,
+                          width: 1.sw,
+                          fit: BoxFit.cover,
+                        ).cornerRadius(18)
+                      : Image.network(
+                          "https://addlogo.imageonline.co/image.jpg",
+                          fit: BoxFit.cover,
+                          width: MediaQuery.of(context).size.width,
+                        ).cornerRadius(18),
+                  IconButton(
+                    onPressed: () => addPostsViewModel.pickImage(context),
+                    icon: const Icon(
+                      FeatherIcons.camera,
+                      color: Colors.red,
+                    ),
+                  ),
+                ],
+              );
+            },
           ),
           20.h.heightBox,
-          const Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: const VxTextField(
-              hint: "Enter Title",
-              borderRadius: 10,
-              fillColor: Colors.transparent,
-              borderColor: MyColors.appcolor,
-              borderType: VxTextFieldBorderType.roundLine,
-            ),
+          VxTextField(
+            hint: "Enter Title",
+            borderRadius: 10,
+            fillColor: Colors.transparent,
+            borderColor: MyColors.appcolor,
+            borderType: VxTextFieldBorderType.roundLine,
+            controller: addPostsViewModel.textEditingController,
           ),
           10.h.heightBox,
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: const VxTextField(
-              hint: "Slug",
-              borderRadius: 10,
-              fillColor: Colors.transparent,
-              borderColor: MyColors.appcolor,
-              borderType: VxTextFieldBorderType.roundLine,
-            ),
+          VxTextField(
+            hint: "Slug",
+            borderRadius: 10,
+            fillColor: Colors.transparent,
+            borderColor: MyColors.appcolor,
+            borderType: VxTextFieldBorderType.roundLine,
+            controller: addPostsViewModel.textEditingController,
           ),
           20.h.heightBox,
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Container(
-              decoration: BoxDecoration(
-                  color: Color.fromARGB(179, 199, 191, 191),
-                  borderRadius: BorderRadius.circular(12)),
-              height: 60,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 12),
-                child: Row(
-                  children: [
-                    "Tags".text.make(),
-                    const Spacer(),
-                    IconButton(
-                        onPressed: () {}, icon: Icon(Icons.chevron_right))
-                  ],
-                ),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Container(
-              decoration: BoxDecoration(
-                  color: Color.fromARGB(179, 199, 191, 191),
-                  borderRadius: BorderRadius.circular(12)),
-              height: 60,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 12),
-                child: Row(
-                  children: [
-                    "Categories".text.make(),
-                    const Spacer(),
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(Icons.chevron_right),
+          BlocBuilder<VelocityBloc<Tag?>, VelocityState<Tag?>>(
+            bloc: addPostsViewModel.selectedTagbloc,
+            builder: (context, state) {
+              return InkWell(
+                onTap: () async {
+                  var data =
+                      await AutoRouter.of(context).push<Tag>(const TagsRoute());
+                  addPostsViewModel.selectedTagbloc.onUpdateData(data);
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: const Color.fromARGB(179, 199, 191, 191),
+                      borderRadius: BorderRadius.circular(12)),
+                  height: 60,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    child: Row(
+                      children: [
+                        state.data != null
+                            ? state.data!.title!.text.make()
+                            : "Tags".text.make(),
+                        const Spacer(),
+                        IconButton(
+                            onPressed: () {},
+                            icon: const Icon(Icons.chevron_right))
+                      ],
                     ),
-                    10.h.heightBox,
-                  ],
+                  ),
                 ),
+              );
+            },
+          ),
+          12.h.heightBox,
+          QuillToolbar.simple(
+            configurations: QuillSimpleToolbarConfigurations(
+              controller: addPostsViewModel._controller,
+              sharedConfigurations: const QuillSharedConfigurations(
+                locale: Locale('de'),
               ),
             ),
           ),
+          QuillEditor.basic(
+            configurations: QuillEditorConfigurations(
+              controller: addPostsViewModel._controller,
+              readOnly: false,
+              sharedConfigurations: const QuillSharedConfigurations(
+                locale: Locale('de'),
+              ),
+            ),
+          )
         ],
       ),
     );

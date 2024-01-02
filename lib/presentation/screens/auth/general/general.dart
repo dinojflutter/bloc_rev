@@ -18,9 +18,6 @@ class _GeneralState extends State<General> {
         icon: FeatherIcons.home,
       ),
       const TabItem(
-        icon: FeatherIcons.tag,
-      ),
-      const TabItem(
         icon: FeatherIcons.plus,
       ),
       const TabItem(
@@ -33,14 +30,16 @@ class _GeneralState extends State<General> {
 
     List<Widget> pages = [
       const Home(),
-      const Categories(),
       const AddPosts(),
       const Tags(),
       const Profile(),
     ];
 
     return Scaffold(
-      body: pages.elementAt(_currentIndex),
+      body: IndexedStack(
+        index: _currentIndex,
+        children: pages,
+      ),
       bottomNavigationBar: BottomBarCreative(
         items: items,
         backgroundColor: Colors.white,

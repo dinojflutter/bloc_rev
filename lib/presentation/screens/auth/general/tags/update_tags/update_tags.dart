@@ -17,7 +17,14 @@ class _UpdateTagsState extends State<UpdateTags> {
   void initState() {
     updateTagsViewModel =
         UpdateTagsViewModel(repository: context.read<Repository>());
+    updateTagsViewModel.textcontroller.text = widget.tag.title.toString();
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    updateTagsViewModel.textcontroller.dispose();
+    super.dispose();
   }
 
   @override
@@ -32,7 +39,7 @@ class _UpdateTagsState extends State<UpdateTags> {
           },
         ),
         backgroundColor: MyColors.appcolor,
-        title: "Add Tags".text.color(Colors.white).make().centered(),
+        title: "Update".text.color(Colors.white).make().centered(),
       ),
       body: SafeArea(
         child: Padding(
@@ -65,8 +72,8 @@ class _UpdateTagsState extends State<UpdateTags> {
                     return Primarybottom(
                         isloading: state.data,
                         text: "Update Tags",
-                        onpressed: () =>
-                            updateTagsViewModel.updateTags(context, "1"));
+                        onpressed: () => updateTagsViewModel.updateTags(
+                            context, widget.tag.id.toString()));
                   },
                 ),
               )

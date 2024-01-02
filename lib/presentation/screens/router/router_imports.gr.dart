@@ -94,7 +94,7 @@ abstract class $AppRouter extends _i11.RootStackRouter {
       );
     },
     TagsRoute.name: (routeData) {
-      return _i11.AutoRoutePage<dynamic>(
+      return _i11.AutoRoutePage<_i12.Tag>(
         routeData: routeData,
         child: const _i9.Tags(),
       );

@@ -90,9 +90,9 @@ class _HomeState extends State<Home> {
                               children: [
                                 GestureDetector(
                                   onTap: () => AutoRouter.of(context).push(
-                                      HomeDetailsRoute(
-                                          post: latestpost,
-                                          imagepath: imagepath)),
+                                    HomeDetailsRoute(
+                                        post: latestpost, imagepath: imagepath),
+                                  ),
                                   child: Hero(
                                     tag: latestpost.id.toString(),
                                     child: CachedNetworkImage(

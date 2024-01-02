@@ -10,7 +10,7 @@ class UpdateTagsViewModel {
 
   updateTags(context, String id) async {
     isloadingbloc.onUpdateData(true);
-    var data = await repository.tagsRepo.updateTags(textcontroller.text, id,
+    var data = await repository.tagsRepo.updateTags(id, textcontroller.text,
         textcontroller.text.toLowerCase().replaceAll(" ", "-"));
     if (data.status == 1) {
       VxToast.show(context, msg: data.message.toString());
