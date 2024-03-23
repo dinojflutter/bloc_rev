@@ -37,7 +37,15 @@ class _AddPostsState extends State<AddPosts> {
             bloc: addPostsViewModel.isloadingbloc,
             builder: (context, state) {
               return IconButton(
-                onPressed: () => addPostsViewModel.addpost(context),
+                onPressed: () => addPostsViewModel.addpost(
+                    context,
+                    context
+                        .read<VelocityBloc<ProfileModel>>()
+                        .state
+                        .data
+                        .userDetails!
+                        .id
+                        .toString()),
                 icon: state.data == true
                     ? const CircularProgressIndicator(
                         color: Colors.white,
@@ -108,8 +116,8 @@ class _AddPostsState extends State<AddPosts> {
             builder: (context, state) {
               return InkWell(
                 onTap: () async {
-                  var data =
-                      await AutoRouter.of(context).push<Tag>(const TagsRoute());
+                  var data = await AutoRouter.of(context)
+                      .push<Tag>(TagsRoute(navigateType: NavigateType.inner));
                   addPostsViewModel.selectedTagbloc.onUpdateData(data);
                 },
                 child: Container(

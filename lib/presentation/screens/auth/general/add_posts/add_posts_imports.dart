@@ -4,6 +4,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:bloc_revisions/core/constants/my_colors.dart';
 
 import 'package:bloc_revisions/data/repositories/repository.dart';
+import 'package:bloc_revisions/presentation/enums/navigate_type.dart';
+import 'package:bloc_revisions/presentation/screens/auth/general/profile/profile_model.dart';
 import 'package:bloc_revisions/presentation/screens/auth/general/tags/tags_model.dart';
 import 'package:bloc_revisions/presentation/screens/router/router_imports.gr.dart';
 

@@ -30,9 +30,8 @@ class AuthRepo extends ApiClient {
 
   Future<MessageModel> userlogout(context) async {
     try {
-      final response = await postRequest(
-        path: ApiEndPoints.logout,
-      );
+      final response =
+          await postRequest(path: ApiEndPoints.logout, isTokenRequired: true);
       if (response.statusCode == 200) {
         final responseData = messageModelFromJson(jsonEncode(response.data));
 

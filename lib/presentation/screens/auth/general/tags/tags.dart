@@ -2,8 +2,8 @@ part of 'tags_imports.dart';
 
 @RoutePage<Tag>()
 class Tags extends StatefulWidget {
-  const Tags({super.key});
-
+  const Tags({super.key, required this.navigateType});
+  final NavigateType navigateType;
   @override
   State<Tags> createState() => _TagsState();
 }
@@ -23,7 +23,8 @@ class _TagsState extends State<Tags> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: MyColors.appcolor,
-        automaticallyImplyLeading: false,
+        automaticallyImplyLeading:
+            NavigateType.outer == widget.navigateType ? false : true,
         title: "Tags".text.color(Colors.white).make().centered(),
         actions: [
           Padding(
@@ -85,7 +86,9 @@ class _TagsState extends State<Tags> {
                         ),
                       ),
                       onTap: () {
-                        AutoRouter.of(context).pop<Tag>(tagsData);
+                        NavigateType.outer == widget.navigateType
+                            ? null
+                            : AutoRouter.of(context).pop<Tag>(tagsData);
                       },
                     ),
                   );

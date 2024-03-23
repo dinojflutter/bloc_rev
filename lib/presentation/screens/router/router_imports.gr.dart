@@ -9,6 +9,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i11;
+import 'package:bloc_revisions/presentation/enums/navigate_type.dart' as _i15;
 import 'package:bloc_revisions/presentation/screens/auth/auth_imports.dart'
     as _i2;
 import 'package:bloc_revisions/presentation/screens/auth/general/general_imports.dart'
@@ -94,9 +95,13 @@ abstract class $AppRouter extends _i11.RootStackRouter {
       );
     },
     TagsRoute.name: (routeData) {
+      final args = routeData.argsAs<TagsRouteArgs>();
       return _i11.AutoRoutePage<_i12.Tag>(
         routeData: routeData,
-        child: const _i9.Tags(),
+        child: _i9.Tags(
+          key: args.key,
+          navigateType: args.navigateType,
+        ),
       );
     },
     UpdateTagsRoute.name: (routeData) {
@@ -255,16 +260,40 @@ class SplashScreenRoute extends _i11.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i9.Tags]
-class TagsRoute extends _i11.PageRouteInfo<void> {
-  const TagsRoute({List<_i11.PageRouteInfo>? children})
-      : super(
+class TagsRoute extends _i11.PageRouteInfo<TagsRouteArgs> {
+  TagsRoute({
+    _i13.Key? key,
+    required _i15.NavigateType navigateType,
+    List<_i11.PageRouteInfo>? children,
+  }) : super(
           TagsRoute.name,
+          args: TagsRouteArgs(
+            key: key,
+            navigateType: navigateType,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'TagsRoute';
 
-  static const _i11.PageInfo<void> page = _i11.PageInfo<void>(name);
+  static const _i11.PageInfo<TagsRouteArgs> page =
+      _i11.PageInfo<TagsRouteArgs>(name);
+}
+
+class TagsRouteArgs {
+  const TagsRouteArgs({
+    this.key,
+    required this.navigateType,
+  });
+
+  final _i13.Key? key;
+
+  final _i15.NavigateType navigateType;
+
+  @override
+  String toString() {
+    return 'TagsRouteArgs{key: $key, navigateType: $navigateType}';
+  }
 }
 
 /// generated route for

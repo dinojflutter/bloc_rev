@@ -32,14 +32,14 @@ class AddPostsViewModel {
     _controller.clear();
   }
 
-  addpost(context) async {
+  addpost(context, userId) async {
     isloadingbloc.onUpdateData(true);
     var data = await repository.postRepo.addnewPosts(
       textEditingController.text,
       textEditingController.text.toLowerCase().replaceAll(" ", "-"),
       selectedTagbloc.state.data!.id.toString(),
       _controller.document.toPlainText(),
-      "1",
+      userId,
       selectedImagebloc.state.data!.path,
       selectedImagebloc.state.data!.path.split("/").last,
     );

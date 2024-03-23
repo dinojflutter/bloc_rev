@@ -2,8 +2,10 @@ import 'package:bloc_revisions/core/themes/app_themes.dart';
 import 'package:bloc_revisions/data/repositories/auth_repo.dart';
 import 'package:bloc_revisions/data/repositories/post_repo.dart';
 import 'package:bloc_revisions/data/repositories/tags_repo.dart';
+import 'package:bloc_revisions/presentation/screens/auth/general/profile/profile_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:velocity_bloc/velocity_bloc.dart';
 
 import 'data/repositories/repository.dart';
 import 'presentation/screens/router/router_imports.dart';
@@ -32,14 +34,17 @@ class MyApp extends StatelessWidget {
       designSize: const Size(390, 844),
       minTextAdapt: true,
       splitScreenMode: true,
-      child: MaterialApp.router(
-        debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
+      child: BlocProvider(
+        create: (context) => VelocityBloc<ProfileModel>(ProfileModel()),
+        child: MaterialApp.router(
+          debugShowCheckedModeBanner: false,
+          title: 'Flutter Demo',
 
-        theme: AppThemes.light,
-        darkTheme: AppThemes.dark,
-        routerConfig: _appRouter.config(),
-        // home: const MyHomePage(title: MyStrings.appname),
+          theme: AppThemes.light,
+          darkTheme: AppThemes.dark,
+          routerConfig: _appRouter.config(),
+          // home: const MyHomePage(title: MyStrings.appname),
+        ),
       ),
     );
   }

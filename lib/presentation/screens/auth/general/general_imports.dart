@@ -1,5 +1,6 @@
 import 'package:awesome_bottom_bar/awesome_bottom_bar.dart';
 import 'package:bloc_revisions/core/constants/my_colors.dart';
+import 'package:bloc_revisions/presentation/enums/navigate_type.dart';
 import 'package:bloc_revisions/presentation/screens/auth/general/add_posts/add_posts_imports.dart';
 import 'package:bloc_revisions/presentation/screens/auth/general/home/home_imports.dart';
 import 'package:bloc_revisions/presentation/screens/auth/general/profile/profile_imports.dart';

@@ -13,7 +13,7 @@ class _ProfileState extends State<Profile> {
   @override
   void initState() {
     profileViewModel = ProfileViewModel(repository: context.read<Repository>());
-    profileViewModel.getUserProfileData();
+    profileViewModel.getUserProfileData(context);
     super.initState();
   }
 
@@ -42,7 +42,7 @@ class _ProfileState extends State<Profile> {
             return const Center(child: CircularProgressIndicator());
           } else if (state is VelocityUpdateState) {
             return RefreshIndicator(
-              onRefresh: () => profileViewModel.getUserProfileData(),
+              onRefresh: () => profileViewModel.getUserProfileData(context),
               child: ListView(
                 children: [
                   Container(
