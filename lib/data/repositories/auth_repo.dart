@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:bloc_revisions/data/models/message_model.dart';
 import 'package:bloc_revisions/presentation/screens/auth/login/login_model.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 import '../data_sources/remote/api_client.dart';
 import '../data_sources/remote/api_endpoints_urls.dart';
@@ -22,7 +21,7 @@ class AuthRepo extends ApiClient {
         LoginModel();
       }
     } on Exception catch (e) {
-      VxToast.show(context, msg: e.toString());
+      (context, msg: e.toString());
       LoginModel();
     }
     return LoginModel();
@@ -40,7 +39,7 @@ class AuthRepo extends ApiClient {
         MessageModel();
       }
     } on Exception catch (e) {
-      VxToast.show(context, msg: e.toString());
+      (context, msg: e.toString());
       MessageModel();
     }
     return MessageModel();

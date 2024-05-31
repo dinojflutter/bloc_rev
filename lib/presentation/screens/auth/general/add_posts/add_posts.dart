@@ -155,7 +155,6 @@ class _AddPostsState extends State<AddPosts> {
           QuillEditor.basic(
             configurations: QuillEditorConfigurations(
               controller: addPostsViewModel._controller,
-              readOnly: false,
               sharedConfigurations: const QuillSharedConfigurations(
                 locale: Locale('de'),
               ),

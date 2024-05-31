@@ -41,10 +41,8 @@ class _HomeState extends State<Home> {
                           itemCount: state.data.popularPosts!.length,
                           itemBuilder: (context, index) {
                             var latestpost = state.data.popularPosts![index];
-                            var imagepath = latestpost.featuredimage
-                                .toString()
-                                .prepend("https://techblog.codersangam.com/")
-                                .replaceAll("public", "storage");
+                            var imagepath = latestpost.featuredimage.toString();
+
                             return CachedNetworkImage(
                               imageUrl: imagepath,
                               fit: BoxFit.cover,
@@ -78,10 +76,7 @@ class _HomeState extends State<Home> {
                         physics: const NeverScrollableScrollPhysics(),
                         itemBuilder: (context, index) {
                           var latestpost = state.data.allPosts![index];
-                          var imagepath = latestpost.featuredimage
-                              .toString()
-                              .prepend("https://techblog.codersangam.com/")
-                              .replaceAll("public", "storage");
+                          var imagepath = latestpost.featuredimage.toString();
 
                           return FadedScaleAnimation(
                             child: Row(
